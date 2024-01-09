@@ -1,20 +1,9 @@
 name: Workflow 2
-on: [push, workflow_dispatch]
+on: [issues, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
-      - name: Run Lint
-        run: npm lint
-      - name: Run Tests
-        run: npm test
-      - name: Run Build
-        run: npm build
+      - name: Output Github Context
+        uses: echo "${{ toJSON(github) }}"
+
